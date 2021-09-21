@@ -1,5 +1,5 @@
 from chessboard import ChessBoard
-from chesspiece import ChestPiece
+from chesspiece import ChessPiece
 from uuid import UUID
 from fastapi import FastAPI
 
