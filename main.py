@@ -8,6 +8,7 @@ board = ChessBoard()
 
 app = FastAPI()
 
+
 @app.post("/")
 def post_piece(pieceType: str, pieceColor: str):
     piece = ChessPiece(pieceType, pieceColor)
@@ -24,6 +25,8 @@ def put_board(id: UUID, position: str):
     result = board.addPieceToBoard(id, position)
 
     if type(result) is str:
+        if result == "PIECE ADDED":
+            return {"success": result}
         return {"error": result}
 
     return {"possibleLocations": result}

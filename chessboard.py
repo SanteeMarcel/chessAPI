@@ -45,8 +45,9 @@ class ChessBoard():
 
         if piece["type"] == "knight":
             # This will override any current piece on this position
+            results = self.checkKnightMovements(position, piece)
             self.chessBoard[position] = piece
-            return self.checkKnightMovements(position, piece)
+            return results
 
         return "INVALID PIECE"
 
@@ -64,15 +65,16 @@ class ChessBoard():
     def validMoves(self, position: str, piece: dict) -> list:
         x, y = position
         x = ord(x) - ord('a')
+        y = int(y)
         moves = list(product([x - 1, x + 1], [y - 2, y + 2])) + \
             list(product([x - 2, x + 2], [y - 1, y + 1]))
-        moves = [(x, y) for x, y in moves if x >= 0 and y >= 0 and x < 8 and y < 8]
+        moves = [(x, y) for x, y in moves if x > 0 and y > 0 and x < 8 and y < 8]
 
         validMoves = []
 
         for move in moves:
-            possiblePosition = chr(move[0]) + move[1]
-            if self.chessBoard[possiblePosition] is not None and self.chessBoard[possiblePosition]["color"] != piece["color"]:
+            possiblePosition = chr(move[0] + ord('a')) + str(move[1])
+            if self.chessBoard[possiblePosition] is None or self.chessBoard[possiblePosition]["color"] != piece["color"]:
                 validMoves.append(possiblePosition)
 
         return validMoves
