@@ -2,13 +2,13 @@ from chessboard import ChessBoard
 from chesspiece import ChessPiece
 from uuid import UUID
 from fastapi import FastAPI
+from fastapi.testclient import TestClient
 
 board = ChessBoard()
 
 app = FastAPI()
 
-
-@app.post("{piece}")
+@app.post("/")
 def post_piece(pieceType: str, pieceColor: str):
     piece = ChessPiece(pieceType, pieceColor)
 
@@ -19,7 +19,7 @@ def post_piece(pieceType: str, pieceColor: str):
     return {"error": piece}
 
 
-@app.put("{id}&{position}")
+@app.put("/")
 def put_board(id: UUID, position: str):
     result = board.addPieceToBoard(id, position)
 

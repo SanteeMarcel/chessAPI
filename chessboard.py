@@ -28,12 +28,15 @@ class ChessBoard():
             return "INVALID POSITION"
 
         for value in self.chessBoard.values():
-            if value["id"] == pieceId:
+            if value is not None and value["id"] == pieceId:
                 return "PIECE ALREADY ADDED TO THE BOARD"
 
         for p in self.pieceList:
             if p["id"] == pieceId:
                 piece = p
+
+        if len(piece) == 0:
+            return "PIECE DOES NOT EXIST"
 
         if piece["type"] != "knight":
             # This will override any current piece on this position
