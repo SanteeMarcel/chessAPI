@@ -14,13 +14,16 @@ def post_piece(pieceType: str, pieceColor: str):
 
     if type(piece) is dict:
         board.addPieceToList(piece)
-        return piece["id"]
+        return {"Id": piece["id"]}
 
-    return piece
+    return {"error": piece}
 
 
 @app.put("{id}&{position}")
 def put_board(id: UUID, position: str):
     result = board.addPieceToBoard(id, position)
 
-    return result
+    if type(result) is str:
+        return {"error": result}
+
+    return {"possibleLocations": result}
