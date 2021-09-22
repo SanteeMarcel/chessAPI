@@ -52,8 +52,3 @@ def put_board(id: UUID, position: str):
     db.actions.insert_one({"Calculated Possible Locations": str(
         result)}) if connectedToDababase else None
     return {"possibleLocations": result}
-
-
-@app.get("/")
-def read_root():
-    return {"hello": "world"}
