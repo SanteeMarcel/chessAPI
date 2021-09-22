@@ -1,11 +1,13 @@
 # chessAPI
- Python FastAPI small chess project
+
+Python FastAPI small chess project
+Ask me for database access
 
 Execute:
 
 pip install -r requirements.txt
 
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 
 Acesse:
 
