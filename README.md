@@ -1,7 +1,6 @@
 # chessAPI
 
 Python FastAPI small chess project
-Ask me for database access
 
 # Run without docker
 
